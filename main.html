@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<!-- Theme: Dark Nebula (High-res space background, White text, Semi-transparent dark cards, Indigo accents) -->
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anjani Nandan Reddy Lavanuru | Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        
+        /* Dark Nebula Background */
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #f1f5f9; /* Slate 100 - White text for contrast */
+            background-color: #0f172a; /* Fallback dark blue */
+            
+            /* Using the direct Unsplash URL extracted from your Google Search link */
+            background-image: url('https://raw.githubusercontent.com/nandanreddy123/anjani-resume/bf62708c1f738b015f288055c95676cbbe723de5/BackGround.png');
+            background-size: cover;
+            background-attachment: fixed; /* Keep background fixed while scrolling */
+            background-position: center;
+        }
+
+        /* Container Card Style (Translucent Dark Overlay) */
+        .resume-card {
+            background-color: rgba(15, 23, 42, 0.85); /* Slate 900 with 85% opacity */
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(79, 70, 229, 0.3); /* Subtle Indigo Border */
+        }
+        
+        /* General Component Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            @apply px-3 py-2 rounded-md text-sm font-medium text-indigo-300 hover:bg-indigo-900/50 hover:text-white transition-colors;
+        }
+        
+        /* Header navigation bar fixed and translucent */
+        header {
+             background-color: rgba(15, 23, 42, 0.95); /* Slightly darker header */
+        }
+
+        .skill-btn {
+            @apply px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 border-2 border-transparent shadow-md;
+        }
+        .skill-btn.active {
+            @apply bg-indigo-600 text-white shadow-lg shadow-indigo-500/50;
+        }
+        .skill-btn:not(.active) {
+            @apply bg-slate-700 text-indigo-300 hover:bg-slate-600/70 border-indigo-500/50;
+        }
+        .project-tab {
+            @apply px-4 py-2 font-medium text-sm rounded-t-lg border-b-4 transition-colors;
+        }
+        .project-tab.active {
+            @apply border-indigo-400 text-indigo-100;
+        }
+        .project-tab:not(.active) {
+            @apply border-transparent text-slate-400 hover:text-indigo-300 hover:border-indigo-500/50;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 w-full backdrop-blur-sm shadow-xl z-50 border-b border-indigo-700">
+        <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link">Home</a>
+                        <a href="#summary" class="nav-link">Summary</a>
+                        <a href="#skills" class="nav-link">Competencies</a>
+                        <a href="#experience" class="nav-link">Experience</a>
+                        <a href="#education" class="nav-link">Education</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="inline-flex items-center justify-center p-2 rounded-md text-indigo-400 hover:text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="md:hidden hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block nav-link">Home</a>
+                <a href="#summary" class="block nav-link">Summary</a>
+                <a href="#skills" class="block nav-link">Competencies</a>
+                <a href="#experience" class="block nav-link">Experience</a>
+                <a href="#education" class="block nav-link">Education</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="h-[calc(100vh-64px)] min-h-[400px] flex items-center justify-center text-center px-4">
+            <div class="max-w-3xl resume-card p-8 rounded-2xl shadow-2xl">
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-snug">Anjani Nandan Reddy Lavanuru</h1>
+                <h2 class="mt-4 text-2xl md:text-4xl font-medium text-indigo-400">Dynamic Developer</h2>
+                <div class="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-4 text-slate-200">
+                    <a href="mailto:nandanreddy288@gmail.com" class="flex items-center text-indigo-400 hover:text-white transition-colors font-medium">
+                        <span class="text-xl mr-2">📧</span> nandanreddy288@gmail.com
+                    </a>
+                    <a href="https://linkedin.com/in/lavanuru-anjani-nandan-reddy-341885165" target="_blank" rel="noopener noreferrer" class="flex items-center text-indigo-400 hover:text-white transition-colors font-medium">
+                        <span class="text-xl mr-2">🔗</span> LinkedIn Profile
+                    </a>
+                    <span class="flex items-center text-slate-400">
+                        <span class="text-xl mr-2">📞</span> +91 9052421061
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section id="summary" class="py-16 md:py-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-indigo-400">Professional Summary</h2>
+                <p class="mt-6 text-lg text-slate-300 leading-relaxed text-center resume-card p-6 rounded-xl shadow-xl">
+                    Highly experienced developer (3+ years) specializing in designing, implementing, and optimizing full-stack and modern **AI/ML systems**. Proven expertise in programming, automation, and deploying scalable solutions with a focus on enhancing business operations through intuitive user interfaces and robust data management. Seeking opportunities to leverage deep learning and MLOps expertise.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 md:py-24">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-indigo-400">Core Competencies</h2>
+                <p class="mt-4 text-lg text-slate-300 text-center max-w-3xl mx-auto">
+                    My expertise is distributed across several key domains, with a strong emphasis on AI/ML and MLOps. The chart below visualizes the breadth of my skills, weighted by the number of technologies I specialize in within each category.
+                </p>
+                <div class="mt-12">
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+                
+                <p class="mt-12 text-lg text-slate-300 text-center max-w-3xl mx-auto">
+                    Explore my specific technical skills by selecting a category below.
+                </p>
+                <div id="skill-buttons" class="mt-6 flex flex-wrap justify-center gap-3">
+                    <button class="skill-btn active" data-skill="ai">AI/ML & MLOps</button>
+                    <button class="skill-btn" data-skill="tools">Tools</button>
+                    <button class="skill-btn" data-skill="programming">Programming Languages</button>
+                    <button class="skill-btn" data-skill="data">Data & Cloud</button>
+                    <button class="skill-btn" data-skill="technical">Technical Skills</button>
+                </div>
+                
+                <div id="skills-display-area" class="mt-8 max-w-3xl mx-auto resume-card p-6 rounded-xl shadow-xl min-h-[120px]">
+                    <!-- JS will populate this -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-16 md:py-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-indigo-400">Experience & Key Projects</h2>
+                
+                <div class="mt-12 resume-card p-6 md:p-8 rounded-xl shadow-2xl border-t-4 border-indigo-500">
+                    <h3 class="text-2xl font-semibold text-white">IBM</h3>
+                    <p class="text-md font-medium text-indigo-400">Developer | 06/2022 - Present</p>
+                    <ul class="mt-4 list-disc list-inside space-y-2 text-slate-300">
+                        <li>Focus on creating efficient, scalable software solutions by leveraging expertise in programming and system automation.</li>
+                        <li>Design, implement, and optimize systems to enhance performance, maintainability, and reliability across diverse platforms and technologies.</li>
+                    </ul>
+                </div>
+
+                <div class="mt-12 resume-card rounded-xl shadow-2xl overflow-hidden">
+                    <div class="p-6 md:p-8">
+                        <h3 class="text-2xl font-semibold text-indigo-400">Project: ORDERMAX (Telecom Client)</h3>
+                        <p class="mt-2 text-md text-slate-300">
+                            As a Data Management Developer, I specialize in automating and optimizing data processes within a Master Data Management (MDM) system.
+                        </p>
+                    </div>
+                    
+                    <div class="border-b border-slate-700 px-6 md:px-8">
+                        <nav class="-mb-px flex flex-wrap gap-x-6" aria-label="Tabs">
+                            <button class="project-tab active" data-tab="ai">⭐ AI-Powered Interface</button>
+                            <button class="project-tab" data-tab="core">Core Data Management</button>
+                            <button class="project-tab" data-tab="modern">Modernization</button>
+                        </nav>
+                    </div>
+
+                    <div class="p-6 md:p-8">
+                        <div id="tab-content-ai" class="project-content space-y-4 text-slate-300">
+                            <h4 class="text-xl font-semibold text-indigo-400">Designed and developed an intuitive LLM Chatbot (LLaMA, LangChain, PyTorch)</h4>
+                            <p>This served as a user-friendly interface for MDM operations, becoming the primary focus of my recent work.</p>
+                            <div>
+                                <strong class="text-indigo-300">Business Goal:</strong>
+                                <p>To enhance the UI layer specifically for the Business team. The objective was to **avoid requiring in-depth MDM knowledge** to perform complex data operations, significantly improving operational efficiency and reducing training overhead.</p>
+                            </div>
+                            <div>
+                                <strong class="text-indigo-300">Deployment & MLOps:</strong>
+                                <p>Integrated the model deployment workflow using **MLFlow** for tracking and versioning, ensuring robust, scalable, and reproducible updates to the AI model.</p>
+                            </div>
+                        </div>
+
+                        <div id="tab-content-core" class="project-content hidden space-y-2 text-slate-300">
+                            <ul class="list-disc list-inside">
+                                <li>Utilized **Java** and proprietary scripting to enhance data management workflows.</li>
+                                <li>Developed custom APIs for efficient, automated data import and update processes.</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="tab-content-modern" class="project-content hidden space-y-2 text-slate-300">
+                            <ul class="list-disc list-inside">
+                                <li>Refactored and modernized legacy data scripts to improve maintainability and performance.</li>
+                                <li>Ensured all refactored processes aligned with current technology standards and best practices.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-16 md:py-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-indigo-400">Education & Certifications</h2>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="resume-card p-6 rounded-xl shadow-xl text-center md:text-left border-l-4 border-indigo-500">
+                        <h3 class="text-xl font-semibold text-white">B.Tech in Computers</h3>
+                        <p class="mt-1 text-md text-slate-300">Kalasalingam University</p>
+                        <p class="mt-1 text-sm text-slate-400">GPA: 7.2/10</p>
+                    </div>
+                    <div class="resume-card p-6 rounded-xl shadow-xl text-center md:text-left border-l-4 border-indigo-500">
+                        <h3 class="text-xl font-semibold text-white">AWS Certified Cloud Practitioner</h3>
+                        <p class="mt-1 text-md text-slate-300">AWS (Amazon Web Services)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 bg-black/50 text-slate-400 border-t border-indigo-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>&copy; 2025 Anjani Nandan Reddy Lavanuru</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Mobile Menu Toggle ---
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = mobileMenu.querySelectorAll('a');
+            
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuBtn.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+                });
+            });
+
+            // --- Smooth Scroll for Header Links ---
+            document.querySelectorAll('header a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 64; 
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+            
+            // --- Skills Chart ---
+            const skillsChartCtx = document.getElementById('skillsChart');
+            if (skillsChartCtx) {
+                const skillsData = {
+                    labels: [
+                        'AI/ML & MLOps',
+                        'Tools',
+                        'Programming Languages',
+                        'Data & Cloud',
+                        'Technical Skills'
+                    ],
+                    datasets: [{
+                        label: 'Skill Distribution',
+                        data: [6, 5, 3, 3, 3], 
+                        backgroundColor: [
+                            'rgba(79, 70, 229, 0.7)',   // Indigo-600
+                            'rgba(129, 140, 248, 0.7)', // Indigo-400
+                            'rgba(5, 150, 105, 0.7)',   // Emerald-600 (contrast)
+                            'rgba(167, 139, 250, 0.7)', // Violet-400 (contrast)
+                            'rgba(56, 189, 248, 0.7)'   // Sky-400 (contrast)
+                        ],
+                        borderColor: 'rgba(255, 255, 255, 0.9)',
+                        borderWidth: 2
+                    }]
+                };
+
+                new Chart(skillsChartCtx.getContext('2d'), {
+                    type: 'polarArea',
+                    data: skillsData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: '#93c5fd', // Blue-300
+                                    font: {
+                                        family: "'Inter', sans-serif"
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                backgroundColor: '#1e293b', 
+                                titleFont: {
+                                    weight: 'bold'
+                                },
+                                bodyFont: {
+                                    family: "'Inter', sans-serif"
+                                },
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.label}: ${context.raw} technologies`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            r: {
+                                ticks: {
+                                    display: false
+                                },
+                                grid: {
+                                    color: '#334155' // Slate 700
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // --- Skills Explorer Logic ---
+            const skillContentData = {
+                ai: ['PyTorch', 'LangChain', 'LLaMA', 'MLFlow', 'Pandas', 'Numpy'],
+                tools: ['Jira', 'GitLab', 'IBM Product Master', 'WatsonX Orchestrate', 'Power Bi'],
+                programming: ['Python', 'Java', 'Typescript'],
+                data: ['MySQL', 'Docker', 'AWS Certified Cloud Practitioner'],
+                technical: ['API Development and Integration', 'GenAi Model Development and Deployment', 'Data Automation']
+            };
+
+            const skillsDisplay = document.getElementById('skills-display-area');
+            const skillButtons = document.querySelectorAll('#skill-buttons .skill-btn');
+
+            function updateSkillsDisplay(skillKey) {
+                const skills = skillContentData[skillKey];
+                if (!skills) return;
+                
+                const html = `<div class="flex flex-wrap justify-center gap-3">${skills.map(skill => 
+                    `<span class="bg-slate-700 text-indigo-400 px-4 py-2 rounded-full text-sm font-semibold shadow-md border border-indigo-500/50">${skill}</span>`
+                ).join('')}</div>`;
+                skillsDisplay.innerHTML = html;
+                
+                skillButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.skill === skillKey);
+                });
+            }
+            
+            skillButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    updateSkillsDisplay(btn.dataset.skill);
+                });
+            });
+            
+            updateSkillsDisplay('ai');
+
+            // --- Project Tabs Logic ---
+            const projectTabs = document.querySelectorAll('.project-tab');
+            const projectContents = document.querySelectorAll('.project-content');
+
+            projectTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabKey = tab.dataset.tab;
+                    
+                    projectTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    projectContents.forEach(content => {
+                        content.classList.toggle('hidden', content.id !== `tab-content-${tabKey}`);
+                    });
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
