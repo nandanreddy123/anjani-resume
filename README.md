@@ -1,2 +1,0 @@
-# anjani-resume
-Resume
